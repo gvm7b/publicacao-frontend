@@ -17,3 +17,15 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
+
+  deploy:
+    needs: [ "build" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
