@@ -10,7 +10,7 @@ import { Produto } from '../types/produto';
 export class ProdutoService {
 
     private http: HttpClient = inject(HttpClient);
-    private readonly BASE_URL: string = 'https://publicacao-backend-dev.onrender.com/api';
+    private readonly BASE_URL: string = 'https://publicacao-backend-msk1.onrender.com/api';
 
     public list(): Observable<Produto[]> {
       return this.http.get<Produto[]>(`${this.BASE_URL}/produtos`);
